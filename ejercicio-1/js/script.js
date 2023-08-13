@@ -1,4 +1,4 @@
-
+//Mejorar la usabilidad de los ejercicios del desafío del módulo 3.
 const cashflow = [
     {
         month: "enero",
@@ -85,15 +85,28 @@ const sumFlows = (cashflow)=>{
     return flows;
 }
 
-
-const cashFlowisPositive = (cashflow) => {
-    return cashflow.reduce((prev,curr)=> prev - curr) > 0;
-}
-
 let flows = sumFlows(cashflow);
 
-if (cashFlowisPositive(flows)) {
-    alert ("El flujo no genera pérdidas ヾ(＠^∇^＠)ノ");
-} else {
-    alert ("El flujo genera pérdidas (இдஇ; )");
+const checkCashFlow = (cashflow) => {
+    var reducedCashflow = cashflow.reduce((prev,curr)=> prev - curr);
+    
+    if (reducedCashflow === 0) {
+        return 0;
+    } else if(reducedCashflow > 0) {
+        return 1
+    } else {
+        return -1;
+    }
+}
+
+switch (checkCashFlow(flows)) {
+    case 1:
+        alert ("El flujo no genera pérdidas ヾ(＠^∇^＠)ノ");
+        break;
+    case 0:
+        alert("El flujo no genera ganancias ni pérdidas ʅ(ツ)ʃ");
+        break;
+    case -1:
+        alert ("El flujo genera pérdidas (இдஇ; )");
+        break;
 }
